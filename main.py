@@ -229,6 +229,10 @@ def pages_to_next_rank(total_pages_read: int) -> int:
     Returns:
         int: Pages still needed, or 0 if the reader is already at the top rank.
     '''
+    # ADVANCED TECHNIQUE: tuple unpacking. Each item in RANK_THRESHOLDS is a pair
+    # like ("Hydrogen", 100). "for _, highest_pages in ..." splits the pair into two
+    # names in one step. "_" is a throwaway name for the rank name, which this
+    # function does not need, so only highest_pages is used.
     for _, highest_pages in RANK_THRESHOLDS:
         if total_pages_read <= highest_pages:
             return highest_pages + 1 - total_pages_read
@@ -317,6 +321,9 @@ def find_book(books: list[Book], title: str) -> Book | None:
     Returns:
         Book | None: The matching book, or None if it is not on the shelf.
     '''
+    # ADVANCED TECHNIQUE: "Book | None" is a union type. The "|" means "or", so this
+    # function returns either a Book or None. It is needed because a title that is
+    # not on the shelf has no Book to give back. Callers check "is None" before use.
     for book in books:
         if book.title == title:
             return book
@@ -424,6 +431,9 @@ def index(state: State) -> Page:
     Returns:
         Page: The shelf page.
     '''
+    # ADVANCED TECHNIQUE: "Any" (imported from typing) means "any type is allowed".
+    # Page content mixes different kinds of values (Header, Text, Button, TextBox),
+    # so "list[Any]" tells Python this list can hold all of them while we build it.
     content: list[Any] = [
         Header("Welcome to the Chemistry Shelf", 1),
         Text(f"Current rank: {state.rank}"),
@@ -484,6 +494,9 @@ def book_page(state: State, title: str) -> Page:
         state.message = "That book is not on your shelf."
         return index(state)
     pages_left = book.total_pages - book.pages_read
+    # ADVANCED TECHNIQUE: "Any" (imported from typing) means "any type is allowed".
+    # Page content mixes different kinds of values (Header, Text, Button, TextBox),
+    # so "list[Any]" tells Python this list can hold all of them while we build it.
     content: list[Any] = [
         Header(book.title, 1),
         Text(f"Author: {book.author}"),
@@ -545,6 +558,9 @@ def recommend_page(state: State) -> Page:
     base_topic = state.favorite_topic
     if base_topic == "":
         base_topic = most_read
+    # ADVANCED TECHNIQUE: "Any" (imported from typing) means "any type is allowed".
+    # Page content mixes different kinds of values (Header, Text, Button, TextBox),
+    # so "list[Any]" tells Python this list can hold all of them while we build it.
     content: list[Any] = [Header("Recommendations", 1)]
     if state.favorite_topic == "":
         content.append(Text("Favorite topic: not chosen yet"))
