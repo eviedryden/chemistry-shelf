@@ -17,7 +17,7 @@ set_site_information(
     description="Track chemistry textbooks, earn element ranks, and get topic recommendations.",
     sources=["Official Drafter documentation: https://drafter-edu.github.io/drafter/"],
     planning=["CS1 Final Project 0_ Pick a Problem.pdf", "CS1 Final Project 1_ Design.pdf"],
-    links=["https://github.com/eviedryden/chemistry-shelf"],
+    links=["https://github.com/eviedryden/chemistry-shelf/blob/main/CS1%20Final%20Project%200_%20Pick%20a%20Problem.pdf"],
 )
 set_website_title("The Chemistry Shelf")
 hide_debug_information()
