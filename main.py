@@ -10,8 +10,7 @@ from typing import Any
 from bakery import assert_equal
 from drafter import *
 
-# Site information goes right after the imports, before the dataclasses and routes,
-# as the Drafter deployment guide says. Fill in your own details before submitting.
+
 set_site_information(
     author="Evie Dryden",
     description="Track chemistry textbooks, earn element ranks, and get topic recommendations.",
@@ -22,6 +21,7 @@ set_site_information(
 set_website_title("The Chemistry Shelf")
 hide_debug_information()
 set_website_framed(False)
+set_website_style("daub")
 
 # Global constants (allowed by the project requirements)
 MAX_BOOK_PAGES = 3000
